@@ -1,19 +1,37 @@
-import React from 'react';
-import { Typography, Button, Container } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Typography, Button, Container, makeStyles, TextField } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
-  // button: {
-  //   backgroundColor: '#54f0b7',
-  //   '&:hover': {
-  //     backgroundColor: '#34ad81'
-  //   }
-  // }
+  formItem: {
+    marginBottom: 20
+  },
+  form: {
+    marginBottom: 20,
+    marginTop: 20
+  }
 });
+
+
 
 export default function Create() {
   const styleClasses = useStyles();
+  const [title, setTitle] = useState('');
+  const [detail, setDetail] = useState('');
+  const [errorTitle, setErrorTitle] = useState(false);
+  const [errorDetail, setErrorDetail] = useState(false);
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrorTitle(false);
+    setErrorDetail(false);
+
+    if(title === '') setErrorTitle(true);
+    if(detail === '') setErrorDetail(true);
+
+    if(title && detail) console.log(title, detail);
+  }
+
   return (
     <Container>
       <Typography
@@ -25,23 +43,38 @@ export default function Create() {
         Create a new notes
       </Typography>
 
-      <Typography
-        gutterBottom
-      >
-        Aliqua duis consequat nostrud nostrud ullamco duis elit et Lorem excepteur nisi. Laborum labore reprehenderit velit Lorem esse fugiat laboris deserunt quis nisi eiusmod aliquip ipsum labore. Cillum sit anim excepteur occaecat nulla officia esse Lorem. Amet ea consequat excepteur aliqua sint nostrud culpa et fugiat occaecat. Ut velit qui consectetur reprehenderit qui officia proident nulla sint dolore adipisicing consequat do.
-      </Typography>
+      <form action="" onSubmit={(e) => handleSubmit(e)} className={styleClasses.form}>
+        <TextField
+          fullWidth
+          label="Title"
+          variant="outlined"
+          className={styleClasses.formItem}
+          onChange={(e) => setTitle(e.target.value)}
+          error={errorTitle}
+        />
+
+        <TextField
+          fullWidth
+          label="Details"
+          variant="outlined"
+          multiline
+          rows={4}
+          className={styleClasses.formItem}
+          onChange={(e) => setDetail(e.target.value)}
+          error={errorDetail}
+        />
 
       <Button
         variant="contained"
         type="submit"
         color="secondary"
-        className={styleClasses.button}
         disableElevation
         endIcon={<ArrowRightIcon />}
-        onClick={() => alert('Yeeeeeeeeeehaaaaaaaaaaaawww!')}
+        className={styleClasses.formItem}
       >
         Submit
       </Button>
+      </form>
       
     </Container>
   )
