@@ -4,7 +4,6 @@ import {
         Radio, FormControl, FormLabel, FormControlLabel
       } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import { ClassTwoTone } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
