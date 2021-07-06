@@ -4,12 +4,12 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
-  button: {
-    backgroundColor: '#54f0b7',
-    '&:hover': {
-      backgroundColor: '#34ad81'
-    }
-  }
+  // button: {
+  //   backgroundColor: '#54f0b7',
+  //   '&:hover': {
+  //     backgroundColor: '#34ad81'
+  //   }
+  // }
 });
 
 export default function Create() {
