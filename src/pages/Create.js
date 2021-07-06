@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { Typography, Button, Container, makeStyles, TextField } from '@material-ui/core';
+import { 
+        Typography, Button, Container, makeStyles, TextField, RadioGroup,
+        Radio, FormControl, FormLabel, FormControlLabel
+      } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import { ClassTwoTone } from '@material-ui/icons';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   formItem: {
-    marginBottom: 20
-  },
-  form: {
     marginBottom: 20,
-    marginTop: 20
+    marginTop: 20,
+    display: 'block'
   }
 });
 
@@ -16,8 +19,10 @@ const useStyles = makeStyles({
 
 export default function Create() {
   const styleClasses = useStyles();
+  const history = useHistory();
   const [title, setTitle] = useState('');
   const [detail, setDetail] = useState('');
+  const [category, setCategory] = useState('money');
   const [errorTitle, setErrorTitle] = useState(false);
   const [errorDetail, setErrorDetail] = useState(false);
   
@@ -29,7 +34,17 @@ export default function Create() {
     if(title === '') setErrorTitle(true);
     if(detail === '') setErrorDetail(true);
 
-    if(title && detail) console.log(title, detail);
+    if(title && detail) {
+      fetch('http://localhost:3003/notes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, detail, category })
+      })
+      .then(() => history.push('/'))
+      .catch(err => console.log(err));
+    }
   }
 
   return (
@@ -43,7 +58,7 @@ export default function Create() {
         Create a new notes
       </Typography>
 
-      <form action="" onSubmit={(e) => handleSubmit(e)} className={styleClasses.form}>
+      <form action="" onSubmit={(e) => handleSubmit(e)} noValidate>
         <TextField
           fullWidth
           label="Title"
@@ -64,16 +79,26 @@ export default function Create() {
           error={errorDetail}
         />
 
-      <Button
-        variant="contained"
-        type="submit"
-        color="secondary"
-        disableElevation
-        endIcon={<ArrowRightIcon />}
-        className={styleClasses.formItem}
-      >
-        Submit
-      </Button>
+        <FormControl className={styleClasses.formItem}>
+          <FormLabel>Notes</FormLabel>
+          <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)}>
+            <FormControlLabel value="money" label="Money" control={<Radio />}/>
+            <FormControlLabel value="todos" label="Todos" control={<Radio />}/>
+            <FormControlLabel value="reminders" label="Reminders" control={<Radio />}/>
+            <FormControlLabel value="works" label="Works" control={<Radio />}/>
+          </RadioGroup>
+        </FormControl>
+        
+
+        <Button
+          variant="contained"
+          type="submit"
+          color="secondary"
+          disableElevation
+          endIcon={<ArrowRightIcon />}
+        >
+          Submit
+        </Button>
       </form>
       
     </Container>

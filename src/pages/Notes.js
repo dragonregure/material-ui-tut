@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function Notes() {
+  const [notes, setNotes] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:3003/notes')
+    .then(res => res.json())
+    .then(data => setNotes(data));
+  }, []);
   return (
     <div>
-      Notes page
+      {
+        notes.map(notes => {
+          return (
+            <p key={notes.id}>{notes.title}</p>
+          );
+        })
+      }
     </div>
   )
 }
