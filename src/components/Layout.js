@@ -21,7 +21,8 @@ const menuItems = [
     }
 ]
 
-const useStyles = makeStyles({
+// Makestyles with customize theme as parameter
+const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex'
     },
@@ -32,13 +33,16 @@ const useStyles = makeStyles({
     sideDrawer: {
         width: drawerWidth
     },
+    sideDrawerTitle: {
+        padding: theme.spacing(2)
+    },
     sideDrawerPaper: {
         width: drawerWidth
     },
     active: {
         background: '#f4f4f4'
     }
-});
+}));
 
 const Layout = ({ children }) => {
     const classes = useStyles();
@@ -58,7 +62,7 @@ const Layout = ({ children }) => {
                 classes={{ paper:  classes.sideDrawerPaper}}
                 anchor="left"
             >
-                <Typography>
+                <Typography className={classes.sideDrawerTitle}>
                     Notes Drawer
                 </Typography>
                 <List>
