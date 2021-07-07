@@ -3,9 +3,11 @@ import { makeStyles } from '@material-ui/core';
 import { Drawer } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { AppBar, Toolbar } from '@material-ui/core';
 import SubjectOutlinedIcon from '@material-ui/icons/SubjectOutlined';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import { useHistory, useLocation } from 'react-router';
+import { format } from 'date-fns';
 
 const drawerWidth = 240;
 const menuItems = [
@@ -28,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
     },
     pages: {
         backgroundColor: '#f9f9f9',
-        width: '100%'
+        width: '100%',
+        padding: theme.spacing(2)
     },
     sideDrawer: {
         width: drawerWidth
@@ -41,6 +44,13 @@ const useStyles = makeStyles((theme) => ({
     },
     active: {
         background: '#f4f4f4'
+    },
+    appBar: {
+        width: `calc(100% - ${drawerWidth}px)`
+    },
+    toolBar: theme.mixins.toolbar,
+    date: {
+        flexGrow: 1
     }
 }));
 
@@ -51,9 +61,12 @@ const Layout = ({ children }) => {
     return (
         <div className={classes.root}>
             {/* Appbar Section */}
-            <div>
-                
-            </div>
+            <AppBar className={classes.appBar} elevation={1} color="primary">
+                <Toolbar>
+                    <Typography className={classes.date}>Today is { format(new Date(), 'do MMMM yyyy') }</Typography>
+                    <Typography>User</Typography>
+                </Toolbar>
+            </AppBar>
 
             {/* Side Drawer Section */}
             <Drawer
@@ -86,6 +99,7 @@ const Layout = ({ children }) => {
 
             {/* Dynamic Pages Section */}
             <div className={classes.pages}>
+                <div className={classes.toolBar}></div>
                 {children}
             </div>
         </div>
