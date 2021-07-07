@@ -8,6 +8,7 @@ import SubjectOutlinedIcon from '@material-ui/icons/SubjectOutlined';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import { useHistory, useLocation } from 'react-router';
 import { format } from 'date-fns';
+import { Avatar } from '@material-ui/core';
 
 const drawerWidth = 240;
 const menuItems = [
@@ -51,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
     toolBar: theme.mixins.toolbar,
     date: {
         flexGrow: 1
+    },
+    avatar: {
+        marginLeft: theme.spacing(2)
     }
 }));
 
@@ -65,6 +69,7 @@ const Layout = ({ children }) => {
                 <Toolbar>
                     <Typography className={classes.date}>Today is { format(new Date(), 'do MMMM yyyy') }</Typography>
                     <Typography>User</Typography>
+                    <Avatar src="/wrug.jpeg" className={classes.avatar} />
                 </Toolbar>
             </AppBar>
 

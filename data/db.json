@@ -1,22 +1,28 @@
 {
   "notes": [
     {
-      "id": 3,
-      "title": "Third title!",
-      "detail": "This is the detail",
-      "category": "todos"
+      "title": "Money",
+      "detail": "money",
+      "category": "money",
+      "id": 1
     },
     {
-      "title": "New",
-      "detail": "Hello world!",
+      "title": "Todos",
+      "detail": "todo",
+      "category": "todos",
+      "id": 2
+    },
+    {
+      "title": "Reminders",
+      "detail": "Reminder",
+      "category": "reminders",
+      "id": 3
+    },
+    {
+      "title": "Works",
+      "detail": "works",
       "category": "works",
       "id": 4
-    },
-    {
-      "title": "Yeeeeeeehawwwwwwwwww",
-      "detail": "fagasgasg",
-      "category": "works",
-      "id": 5
     }
   ]
 }
