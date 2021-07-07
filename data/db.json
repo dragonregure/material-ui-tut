@@ -1,18 +1,6 @@
 {
   "notes": [
     {
-      "id": 1,
-      "title": "First title!",
-      "detail": "This is the detail",
-      "category": "works"
-    },
-    {
-      "id": 2,
-      "title": "Second title!",
-      "detail": "Aliquip amet quis aliquip consequat veniam. Tempor sunt duis aliqua aute culpa nulla magna mollit dolor Lorem do est Lorem nulla. Qui veniam enim Lorem in nisi sit sint dolore dolore magna aliquip. Et non mollit dolor id do elit voluptate. Nulla id ullamco minim officia ex commodo enim reprehenderit aliqua irure aliqua. Eu aute reprehenderit voluptate nulla nisi occaecat tempor eu.",
-      "category": "reminders"
-    },
-    {
       "id": 3,
       "title": "Third title!",
       "detail": "This is the detail",
